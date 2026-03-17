@@ -1,6 +1,6 @@
 package com.example._2_ong_endy_pvh_spring_homework002.model.request;
 
-import jakarta.validation.constraints.Email;
+import com.example._2_ong_endy_pvh_spring_homework002.model.entity.Instructor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class InstructorRequest {
-    private String instructorName;
-    @Email(message = "example@gmail.com")
-    private String email;
+public class CourseRequest {
+    private String courseName;
+    private String description;
+    private Long instructorId;
 }

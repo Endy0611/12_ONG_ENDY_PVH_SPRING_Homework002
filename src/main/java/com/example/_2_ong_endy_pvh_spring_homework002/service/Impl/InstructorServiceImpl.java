@@ -1,6 +1,7 @@
 package com.example._2_ong_endy_pvh_spring_homework002.service.Impl;
 
 import com.example._2_ong_endy_pvh_spring_homework002.model.entity.Instructor;
+import com.example._2_ong_endy_pvh_spring_homework002.model.request.InstructorRequest;
 import com.example._2_ong_endy_pvh_spring_homework002.repository.InstructorRepository;
 import com.example._2_ong_endy_pvh_spring_homework002.service.InstructorService;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,20 @@ public class InstructorServiceImpl implements InstructorService {
     @Override
     public Instructor getInstructorById(Long instructorId) {
         return instructorRepository.getInstructorById(instructorId);
+    }
+
+    @Override
+    public Instructor deleteById(Long instructorId) {
+        return instructorRepository.deleteById(instructorId);
+    }
+
+    @Override
+    public Instructor saveInstructor(InstructorRequest instructorRequest) {
+        return instructorRepository.saveInstructor(instructorRequest);
+    }
+
+    @Override
+    public Instructor updateInstructorById(Long instructorId, InstructorRequest instructorRequest) {
+        return instructorRepository.updateInstructorById(instructorId, instructorRequest);
     }
 }
