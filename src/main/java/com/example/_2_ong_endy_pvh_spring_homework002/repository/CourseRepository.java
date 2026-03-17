@@ -40,4 +40,10 @@ public interface CourseRepository {
         DELETE FROM courses WHERE course_id = #{courseId} RETURNING NULL;
     """)
     Course deleteCourseById(Long courseId);
+
+    @ResultMap("coursesMapper")
+    @Select("""
+        UPDATE courses SET course_name = #{req.courseName}, description = #{req.description},instructor_id = #{req.instructorId} WHERE course_id = #{courseId} RETURNING *;
+    """)
+    Course updateCourseById(Long courseId,@Param("req") CourseRequest courseRequest);
 }

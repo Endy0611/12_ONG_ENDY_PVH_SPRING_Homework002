@@ -36,4 +36,9 @@ public class CourseServiceImpl implements CourseService {
     public Course deleteCourseById(Long courseId) {
         return courseRepository.deleteCourseById(courseId);
     }
+
+    @Override
+    public Course updateCourseById(Long courseId, CourseRequest courseRequest) {
+        return courseRepository.updateCourseById(courseId, courseRequest);
+    }
 }

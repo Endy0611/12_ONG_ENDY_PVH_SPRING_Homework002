@@ -13,4 +13,6 @@ public interface CourseService {
     Course saveCourse(CourseRequest courseRequest);
 
     Course deleteCourseById(Long courseId);
+
+    Course updateCourseById(Long courseId, CourseRequest courseRequest);
 }

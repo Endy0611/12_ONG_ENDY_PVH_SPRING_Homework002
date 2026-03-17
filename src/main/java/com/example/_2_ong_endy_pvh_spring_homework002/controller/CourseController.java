@@ -72,7 +72,14 @@ public class CourseController {
 
     @PutMapping("/{course_id}")
     public ResponseEntity<ApiResponse<Course>> updateCourseById(@PathVariable("course_id") Long courseId, @RequestBody CourseRequest courseRequest) {
-
+        ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
+                .success(true)
+                .status(HttpStatus.OK)
+                .message("Course updated successfully")
+                .payload(courseService.updateCourseById(courseId, courseRequest))
+                .timestamp(Instant.now())
+                .build();
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
 }
