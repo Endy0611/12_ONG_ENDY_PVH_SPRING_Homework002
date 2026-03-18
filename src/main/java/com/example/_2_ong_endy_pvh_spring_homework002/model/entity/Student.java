@@ -1,19 +1,16 @@
 package com.example._2_ong_endy_pvh_spring_homework002.model.entity;
 
-
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class Instructor {
-    private Long instructorId;
-    private String instructorName;
-    @Email(message = "example@gmail.com")
+public class Student {
+    private Long studentId;
+    private String studentName;
     private String email;
+    private String phoneNumber;
+    private Course course;
 }

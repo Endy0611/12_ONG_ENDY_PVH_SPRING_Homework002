@@ -4,6 +4,7 @@ import com.example._2_ong_endy_pvh_spring_homework002.model.entity.Instructor;
 import com.example._2_ong_endy_pvh_spring_homework002.model.request.InstructorRequest;
 import com.example._2_ong_endy_pvh_spring_homework002.model.response.ApiResponse;
 import com.example._2_ong_endy_pvh_spring_homework002.service.InstructorService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class InstructorController {
     public InstructorController(InstructorService instructorService) {
         this.instructorService = instructorService;
     }
-
+    @Operation(summary = "Get all instructors")
     @GetMapping
     public ResponseEntity<ApiResponse<List<Instructor>>> getAllInstructors(@RequestParam(defaultValue = "1") int page, @RequestParam (defaultValue = "10") int size) {
 
@@ -34,7 +35,7 @@ public class InstructorController {
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
-
+    @Operation(summary = "Get instructor by ID")
     @GetMapping("/{instructor-id}")
     public ResponseEntity<ApiResponse<Instructor>> getInstructorById(@PathVariable("instructor-id") Long instructorId) {
         ApiResponse<Instructor> apiResponse = ApiResponse.<Instructor>builder()
@@ -47,6 +48,7 @@ public class InstructorController {
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
+    @Operation(summary = "Delete instructor by ID")
     @DeleteMapping("/{instructor-id}")
     public ResponseEntity<ApiResponse<Instructor>> deleteById(@PathVariable ("instructor-id") Long instructorId) {
         ApiResponse<Instructor> apiResponse = ApiResponse.<Instructor>builder()
@@ -58,7 +60,7 @@ public class InstructorController {
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
-
+    @Operation(summary = "Create a new Instructor")
     @PostMapping
     public ResponseEntity<ApiResponse<Instructor>> saveInstructor(@RequestBody InstructorRequest instructorRequest) {
         ApiResponse<Instructor> apiResponse = ApiResponse.<Instructor>builder()
@@ -71,6 +73,7 @@ public class InstructorController {
         return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Update course by ID")
     @PutMapping("/{instructor_id}")
     public ResponseEntity<ApiResponse<Instructor>> updateInstructorById(@PathVariable("instructor_id") Long instructorId, @RequestBody InstructorRequest instructorRequest) {
         ApiResponse<Instructor> apiResponse = ApiResponse.<Instructor>builder()
@@ -81,7 +84,6 @@ public class InstructorController {
                 .timestamp(Instant.now())
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
-
     }
 
 }

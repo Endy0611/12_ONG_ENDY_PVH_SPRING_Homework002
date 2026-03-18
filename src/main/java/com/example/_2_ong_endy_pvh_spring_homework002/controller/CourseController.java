@@ -4,6 +4,7 @@ import com.example._2_ong_endy_pvh_spring_homework002.model.entity.Course;
 import com.example._2_ong_endy_pvh_spring_homework002.model.request.CourseRequest;
 import com.example._2_ong_endy_pvh_spring_homework002.model.response.ApiResponse;
 import com.example._2_ong_endy_pvh_spring_homework002.service.CourseService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class CourseController {
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
-
+    @Operation(summary = "Get All Courses")
     @GetMapping
     public ResponseEntity<ApiResponse<List<Course>>> getAllCourse(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
         ApiResponse<List<Course>> apiResponse = ApiResponse.<List<Course>>builder()
@@ -33,6 +34,7 @@ public class CourseController {
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
+    @Operation(summary = "Get cause by ID")
     @GetMapping("/{course-id}")
     public ResponseEntity<ApiResponse<Course>> getCourseById(@PathVariable("course-id") Long courseId) {
         ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
@@ -46,6 +48,7 @@ public class CourseController {
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
+    @Operation(summary = "Create a new Course")
     @PostMapping
     public ResponseEntity<ApiResponse<Course>> saveCourse(@RequestBody CourseRequest courseRequest) {
         ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
@@ -58,6 +61,8 @@ public class CourseController {
         return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
     }
 
+
+    @Operation(summary = "Deleted course by ID")
     @DeleteMapping("/{course_id}")
     public ResponseEntity<ApiResponse<Course>> deleteCourseById(@PathVariable("course_id") Long courseId) {
         ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
@@ -70,6 +75,7 @@ public class CourseController {
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
+    @Operation(summary = "Update a cause by ID")
     @PutMapping("/{course_id}")
     public ResponseEntity<ApiResponse<Course>> updateCourseById(@PathVariable("course_id") Long courseId, @RequestBody CourseRequest courseRequest) {
         ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()

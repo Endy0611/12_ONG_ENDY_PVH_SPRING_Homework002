@@ -9,3 +9,10 @@ INSERT INTO courses VALUES (default, 'Data Analytic', 'new Course', 1),
                                (default, 'Cyber Security', 'hard course',3),
                                (default, 'Spring Micro Service', 'hot new ',4),
                                (default, 'DevOps', 'On Trend',1);
+SELECT *
+FROM students;
+INSERT INTO students VALUES (default, 'Mai TonnyLery', 'new Course', '032564565'),
+                           (default, 'King Kong', 'old course','025631545'),
+                           (default, 'Mask Zugkaberg', 'hard course','0125487956'),
+                           (default, 'kiko kiko', 'hot new ','0125466598'),
+                           (default, 'nika kter', 'On Trend','015849376');
