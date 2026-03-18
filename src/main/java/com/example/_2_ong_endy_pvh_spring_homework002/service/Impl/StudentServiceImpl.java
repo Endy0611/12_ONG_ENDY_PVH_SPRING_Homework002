@@ -5,6 +5,8 @@ import com.example._2_ong_endy_pvh_spring_homework002.repository.StudentReposito
 import com.example._2_ong_endy_pvh_spring_homework002.service.StudentService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentServiceImpl implements StudentService {
 
@@ -15,7 +17,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student getAllStudent(int page, int size) {
+    public List<Student> getAllStudent(int page, int size) {
         int offSet = size * (page - 1);
         return studentRepository.getAllStudent(offSet, size);
     }

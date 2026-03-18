@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/students")
@@ -24,8 +25,8 @@ public class StudentController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<Student>> getAllStudent(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int  size) {
-        ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
+    public ResponseEntity<ApiResponse<List<Student>>> getAllStudent(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int  size) {
+        ApiResponse<List<Student>> apiResponse = ApiResponse.<List<Student>>builder()
                 .success(true)
                 .status(HttpStatus.OK)
                 .message("Students retrieved successfully")
