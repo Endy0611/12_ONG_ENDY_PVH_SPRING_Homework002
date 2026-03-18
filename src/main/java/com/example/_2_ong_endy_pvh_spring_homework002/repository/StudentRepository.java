@@ -16,5 +16,5 @@ public interface StudentRepository {
     @Select("""
         SELECT * FROM students OFFSET #{offSet} LIMIT #{size}
     """)
-
+    List<Student> getAllStudent(int offSet, int size);
 }
