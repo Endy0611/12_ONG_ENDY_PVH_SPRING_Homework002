@@ -34,11 +34,16 @@ public interface StudentRepository {
     """)
     Student saveStudent(@Param("req") StudentRequest studentRequest);
 
+    @ResultMap("studentMapper")
     @Select("""
     UPDATE students SET student_name=#{req.studentName},email=#{req.email},phone_number=#{req.phoneNumber} WHERE student_id=#{studentId} RETURNING *;
 """)
-    @ResultMap("studentMapper")
     Student updateStudentByID(Long studentId,@Param("req") StudentRequest studentRequest);
 
 
+    @ResultMap("studentMapper")
+    @Select("""
+        DELETE FROM students WHERE student_id = #{studentId};
+    """)
+    Student deleteStudentById(Long studentId);
 }
