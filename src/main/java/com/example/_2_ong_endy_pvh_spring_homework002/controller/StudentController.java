@@ -33,5 +33,15 @@ public class StudentController {
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
-
+    @GetMapping ("/{student-id}")
+    public ResponseEntity<ApiResponse<Student>> getStudentById(@PathVariable("student-id") Long studentId) {
+        ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
+                .success(true)
+                .status(HttpStatus.OK)
+                .message("Students retrieved successfully")
+                .payload(studentService.getStudentById(studentId))
+                .timestamp(Instant.now())
+                .build();
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
 }
