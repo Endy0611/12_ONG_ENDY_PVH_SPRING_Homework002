@@ -11,10 +11,19 @@ public interface StudentRepository {
             @Result(property = "courseName", column = "course_name"),
             @Result(property = "studentId", column = "student_id"),
             @Result(property = "studentName", column = "student_name"),
-            @Result(property = "phoneNumber", column = "phone_number")
+            @Result(property = "phoneNumber", column = "phone_number"),
+
+            @Result(property = "course", column = "student_id", many = @Many (select = "com.example._2_ong_endy_pvh_spring_homework002.repository.StudentCourseRepository.getCourseByStudentId")),
     })
     @Select("""
         SELECT * FROM students OFFSET #{offSet} LIMIT #{size}
     """)
     List<Student> getAllStudent(int offSet, int size);
+
+
+    @ResultMap("studentMapper")
+    @Select("""
+        SELECT * FROM students WHERE student_id = #{studentId}
+    """)
+    Student getStudentById(Long studentId);
 }

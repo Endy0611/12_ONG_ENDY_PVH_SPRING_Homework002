@@ -16,3 +16,4 @@ INSERT INTO students VALUES (default, 'Mai TonnyLery', 'new Course', '032564565'
                            (default, 'Mask Zugkaberg', 'hard course','0125487956'),
                            (default, 'kiko kiko', 'hot new ','0125466598'),
                            (default, 'nika kter', 'On Trend','015849376');
+INSERT INTO student_course VALUES (8,3)

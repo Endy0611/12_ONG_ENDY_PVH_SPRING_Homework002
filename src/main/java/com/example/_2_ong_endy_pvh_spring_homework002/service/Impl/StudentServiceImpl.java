@@ -21,4 +21,9 @@ public class StudentServiceImpl implements StudentService {
         int offSet = size * (page - 1);
         return studentRepository.getAllStudent(offSet, size);
     }
+
+    @Override
+    public Student getStudentById(Long studentId) {
+        return studentRepository.getStudentById(studentId);
+    }
 }
