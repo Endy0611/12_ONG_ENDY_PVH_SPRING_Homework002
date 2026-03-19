@@ -14,7 +14,7 @@ public interface CourseRepository {
             @Result(property = "courseName", column = "course_name"),
             @Result(property = "instructor", column = "instructor_id",
                     one = @One(
-                            select = "com.example._2_ong_endy_pvh_spring_homework002.repository.InstructorRepository.getInstructorById"// or FetchType.EAGER
+                            select = "com.example._2_ong_endy_pvh_spring_homework002.repository.InstructorRepository.getInstructorById"
                     ))
     })
     @Select("""

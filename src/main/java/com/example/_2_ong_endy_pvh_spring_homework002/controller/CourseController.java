@@ -37,15 +37,26 @@ public class CourseController {
     @Operation(summary = "Get cause by ID")
     @GetMapping("/{course-id}")
     public ResponseEntity<ApiResponse<Course>> getCourseById(@PathVariable("course-id") Long courseId) {
-        ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
-                .success(true)
-                .status(HttpStatus.OK)
-                .message("Course fetched successfully")
-                .payload(courseService.getCourseById(courseId))
-                .timestamp(Instant.now())
-                .build();
-
-        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        Course course = courseService.getCourseById(courseId);
+        if(course != null) {
+            ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
+                    .success(true)
+                    .status(HttpStatus.OK)
+                    .message("Course fetched successfully")
+                    .payload(course)
+                    .timestamp(Instant.now())
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        } else {
+            ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
+                    .success(false)
+                    .status(HttpStatus.NOT_FOUND)
+                    .message("No courses found with the given ID")
+                    .payload(null)
+                    .timestamp(Instant.now())
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
+        }
     }
 
     @Operation(summary = "Create a new Course")
@@ -65,27 +76,53 @@ public class CourseController {
     @Operation(summary = "Deleted course by ID")
     @DeleteMapping("/{course_id}")
     public ResponseEntity<ApiResponse<Course>> deleteCourseById(@PathVariable("course_id") Long courseId) {
-        ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
-                .success(true)
-                .status(HttpStatus.OK)
-                .message("Course deleted successfully")
-                .payload(courseService.deleteCourseById(courseId))
-                .timestamp(Instant.now())
-                .build();
-        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        Course course = courseService.deleteCourseById(courseId);
+        if (course != null) {
+            ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
+                    .success(true)
+                    .status(HttpStatus.OK)
+                    .message("Course deleted successfully")
+                    .payload(courseService.deleteCourseById(courseId))
+                    .timestamp(Instant.now())
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        } else {
+            ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
+                    .success(false)
+                    .status(HttpStatus.NOT_FOUND)
+                    .message("No courses found with the given ID")
+                    .payload(null)
+                    .timestamp(Instant.now())
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @Operation(summary = "Update a cause by ID")
     @PutMapping("/{course_id}")
     public ResponseEntity<ApiResponse<Course>> updateCourseById(@PathVariable("course_id") Long courseId, @RequestBody CourseRequest courseRequest) {
-        ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
-                .success(true)
-                .status(HttpStatus.OK)
-                .message("Course updated successfully")
-                .payload(courseService.updateCourseById(courseId, courseRequest))
-                .timestamp(Instant.now())
-                .build();
-        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        Course course = courseService.updateCourseById(courseId, courseRequest);
+        if (course != null) {
+            ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
+                    .success(true)
+                    .status(HttpStatus.OK)
+                    .message("Course updated successfully")
+                    .payload(course)
+                    .timestamp(Instant.now())
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        } else {
+            ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
+                    .success(false)
+                    .status(HttpStatus.NOT_FOUND)
+                    .message("No courses found with the given ID")
+                    .payload(null)
+                    .timestamp(Instant.now())
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
+        }
+
     }
 
 }

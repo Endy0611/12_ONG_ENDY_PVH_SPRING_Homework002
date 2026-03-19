@@ -47,11 +47,25 @@ public class StudentController {
     }
 
     @PostMapping
-    public Student saveStudent(@RequestBody StudentRequest studentRequest){
-        return studentService.saveStudent(studentRequest);
+    public ResponseEntity<ApiResponse<Student>> saveStudent(@RequestBody StudentRequest studentRequest){
+        ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
+                .success(true)
+                .status(HttpStatus.OK)
+                .message("Student created successfully")
+                .payload(studentService.saveStudent(studentRequest))
+                .timestamp(Instant.now())
+                .build();
+        return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
     }
     @PutMapping("/{student-id}")
-    public Student updateStudentById(Long studentId,@RequestBody StudentRequest studentRequest){
-     return    studentService.updateStudentById(studentId,studentRequest);
+    public ResponseEntity<ApiResponse<Student>> updateStudentById(Long studentId,@RequestBody StudentRequest studentRequest){
+        ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
+                .success(true)
+                .status(HttpStatus.OK)
+                .message("Student updated successfully")
+                .payload(studentService.updateStudentById(studentId,studentRequest))
+                .timestamp(Instant.now())
+                .build();
+     return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 }
