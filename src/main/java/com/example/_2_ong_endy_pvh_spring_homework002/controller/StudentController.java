@@ -6,6 +6,7 @@ import com.example._2_ong_endy_pvh_spring_homework002.model.entity.Student;
 import com.example._2_ong_endy_pvh_spring_homework002.model.request.StudentRequest;
 import com.example._2_ong_endy_pvh_spring_homework002.model.response.ApiResponse;
 import com.example._2_ong_endy_pvh_spring_homework002.service.StudentService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @Operation(summary = "Get all students")
     @GetMapping
     public ResponseEntity<ApiResponse<List<Student>>> getAllStudent(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int  size) {
         ApiResponse<List<Student>> apiResponse = ApiResponse.<List<Student>>builder()
@@ -34,6 +36,7 @@ public class StudentController {
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
+    @Operation(summary = "Get student by ID")
     @GetMapping ("/{student-id}")
     public ResponseEntity<ApiResponse<Student>> getStudentById(@PathVariable("student-id") Long studentId) {
         Student student = studentService.getStudentById(studentId);
@@ -59,6 +62,7 @@ public class StudentController {
 
     }
 
+    @Operation(summary = "Create a new Student")
     @PostMapping
     public ResponseEntity<ApiResponse<Student>> saveStudent(@RequestBody StudentRequest studentRequest){
         ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
@@ -70,6 +74,8 @@ public class StudentController {
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
     }
+
+    @Operation(summary = "Update student by ID")
     @PutMapping("/{student-id}")
     public ResponseEntity<ApiResponse<Student>> updateStudentById(@PathVariable("student-id") Long studentId,@RequestBody StudentRequest studentRequest){
         Student student = studentService.updateStudentById(studentId,studentRequest);
@@ -94,6 +100,7 @@ public class StudentController {
         }
     }
 
+    @Operation(summary = "Delete student by ID")
     @DeleteMapping("/{student_id}")
     public ResponseEntity<ApiResponse<Student>> deleteStudentById(@PathVariable("student_id") Long studentId) {
         Student student = studentService.deleteStudentById(studentId);
