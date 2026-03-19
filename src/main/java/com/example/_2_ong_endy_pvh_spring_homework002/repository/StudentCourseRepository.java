@@ -27,4 +27,10 @@ public interface StudentCourseRepository {
         INSERT INTO student_course VALUES (#{studentId}, #{courseId})
     """)
     void insertStudentCourse(Long studentId, Long courseId);
+
+    @Delete("""
+DELETE FROM student_course WHERE student_id = #{studentId};
+""")
+    void deleteStudentCourseByStudentID(Long studentId);
+
 }

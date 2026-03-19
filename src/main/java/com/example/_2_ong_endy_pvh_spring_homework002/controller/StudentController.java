@@ -50,4 +50,8 @@ public class StudentController {
     public Student saveStudent(@RequestBody StudentRequest studentRequest){
         return studentService.saveStudent(studentRequest);
     }
+    @PutMapping("/{student-id}")
+    public Student updateStudentById(Long studentId,@RequestBody StudentRequest studentRequest){
+     return    studentService.updateStudentById(studentId,studentRequest);
+    }
 }
