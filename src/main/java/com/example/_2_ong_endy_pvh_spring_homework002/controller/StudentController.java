@@ -36,14 +36,27 @@ public class StudentController {
 
     @GetMapping ("/{student-id}")
     public ResponseEntity<ApiResponse<Student>> getStudentById(@PathVariable("student-id") Long studentId) {
-        ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
-                .success(true)
-                .status(HttpStatus.OK)
-                .message("Students retrieved successfully")
-                .payload(studentService.getStudentById(studentId))
-                .timestamp(Instant.now())
-                .build();
-        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        Student student = studentService.getStudentById(studentId);
+        if (student != null) {
+            ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
+                    .success(true)
+                    .status(HttpStatus.OK)
+                    .message("Students retrieved successfully")
+                    .payload(student)
+                    .timestamp(Instant.now())
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        } else {
+            ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
+                    .success(false)
+                    .status(HttpStatus.NOT_FOUND)
+                    .message("No students found with the given ID")
+                    .payload(null)
+                    .timestamp(Instant.now())
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PostMapping
@@ -58,14 +71,27 @@ public class StudentController {
         return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
     }
     @PutMapping("/{student-id}")
-    public ResponseEntity<ApiResponse<Student>> updateStudentById(Long studentId,@RequestBody StudentRequest studentRequest){
-        ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
-                .success(true)
-                .status(HttpStatus.OK)
-                .message("Student updated successfully")
-                .payload(studentService.updateStudentById(studentId,studentRequest))
-                .timestamp(Instant.now())
-                .build();
-     return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    public ResponseEntity<ApiResponse<Student>> updateStudentById(@PathVariable("student-id") Long studentId,@RequestBody StudentRequest studentRequest){
+        Student student = studentService.updateStudentById(studentId,studentRequest);
+        if (student != null) {
+            ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
+                    .success(true)
+                    .status(HttpStatus.OK)
+                    .message("Student updated successfully")
+                    .payload(student)
+                    .timestamp(Instant.now())
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        } else {
+            ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
+                    .success(false)
+                    .status(HttpStatus.NOT_FOUND)
+                    .message("No students found with the given ID")
+                    .payload(null)
+                    .timestamp(Instant.now())
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
+        }
+
     }
 }
