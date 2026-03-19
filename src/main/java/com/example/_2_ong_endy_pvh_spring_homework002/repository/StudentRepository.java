@@ -1,6 +1,7 @@
 package com.example._2_ong_endy_pvh_spring_homework002.repository;
 
 import com.example._2_ong_endy_pvh_spring_homework002.model.entity.Student;
+import com.example._2_ong_endy_pvh_spring_homework002.model.request.StudentRequest;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -26,4 +27,10 @@ public interface StudentRepository {
         SELECT * FROM students WHERE student_id = #{studentId}
     """)
     Student getStudentById(Long studentId);
+
+    @ResultMap("studentMapper")
+    @Select("""
+        INSERT INTO students VALUES (default,#{req.studentName}, #{req.email}, #{phoneNumber}) ;
+    """)
+    Student saveStudent(@Param("req") StudentRequest studentRequest);
 }

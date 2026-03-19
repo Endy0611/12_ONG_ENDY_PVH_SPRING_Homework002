@@ -22,4 +22,9 @@ public interface StudentCourseRepository {
         WHERE student_id = #{studentId}
     """)
         List<Course> getCourseByStudentId(Long studentId);
+
+    @Insert("""
+        INSERT INTO student_course VALUES (#{studentId}, #{courseId})
+    """)
+    void insertStudentCourse(Long studentId, Long courseId);
 }

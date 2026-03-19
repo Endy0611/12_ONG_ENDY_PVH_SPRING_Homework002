@@ -3,6 +3,7 @@ package com.example._2_ong_endy_pvh_spring_homework002.controller;
 
 import com.example._2_ong_endy_pvh_spring_homework002.model.entity.Instructor;
 import com.example._2_ong_endy_pvh_spring_homework002.model.entity.Student;
+import com.example._2_ong_endy_pvh_spring_homework002.model.request.StudentRequest;
 import com.example._2_ong_endy_pvh_spring_homework002.model.response.ApiResponse;
 import com.example._2_ong_endy_pvh_spring_homework002.service.StudentService;
 import org.springframework.http.HttpStatus;
@@ -43,5 +44,10 @@ public class StudentController {
                 .timestamp(Instant.now())
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public Student saveStudent(@RequestBody StudentRequest studentRequest){
+        return studentService.saveStudent(studentRequest);
     }
 }

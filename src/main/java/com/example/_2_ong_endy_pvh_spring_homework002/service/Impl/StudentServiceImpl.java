@@ -1,6 +1,7 @@
 package com.example._2_ong_endy_pvh_spring_homework002.service.Impl;
 
 import com.example._2_ong_endy_pvh_spring_homework002.model.entity.Student;
+import com.example._2_ong_endy_pvh_spring_homework002.model.request.StudentRequest;
 import com.example._2_ong_endy_pvh_spring_homework002.repository.StudentRepository;
 import com.example._2_ong_endy_pvh_spring_homework002.service.StudentService;
 import org.springframework.stereotype.Service;
@@ -26,4 +27,10 @@ public class StudentServiceImpl implements StudentService {
     public Student getStudentById(Long studentId) {
         return studentRepository.getStudentById(studentId);
     }
+
+//    @Override
+//    public Student saveStudent(StudentRequest studentRequest) {
+//        Student studentRepository.saveStudent(studentRequest)
+//        return studentRepository.saveStudent(studentRequest);
+//    }
 }
