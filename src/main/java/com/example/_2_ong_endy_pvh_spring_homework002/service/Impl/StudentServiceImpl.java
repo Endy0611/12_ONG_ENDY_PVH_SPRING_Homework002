@@ -55,6 +55,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student deleteStudentById(Long studentId) {
+        if (studentRepository.getStudentById(studentId) == null) {
+            return null;
+        }
         studentCourseRepository.deleteStudentCourseByStudentID(studentId);
         return studentRepository.deleteStudentById(studentId);
     }

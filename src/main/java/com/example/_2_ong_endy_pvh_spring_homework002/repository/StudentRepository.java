@@ -43,7 +43,7 @@ public interface StudentRepository {
 
     @ResultMap("studentMapper")
     @Select("""
-        DELETE FROM students WHERE student_id = #{studentId};
+        DELETE FROM students WHERE student_id = #{studentId} RETURNING *;
     """)
     Student deleteStudentById(Long studentId);
 }

@@ -29,7 +29,7 @@ public interface StudentCourseRepository {
     void insertStudentCourse(Long studentId, Long courseId);
 
     @Delete("""
-        DELETE FROM student_course WHERE student_id = #{studentId};
+        DELETE FROM student_course WHERE student_id = #{studentId} RETURNING *;
     """)
     void deleteStudentCourseByStudentID(Long studentId);
 }

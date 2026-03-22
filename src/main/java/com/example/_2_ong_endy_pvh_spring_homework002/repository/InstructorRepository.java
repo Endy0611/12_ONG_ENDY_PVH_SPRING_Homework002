@@ -29,7 +29,7 @@ public interface InstructorRepository {
 
     @ResultMap("instructorMapper")
     @Select("""
-        DELETE FROM instructors WHERE instructor_id = #{instructorId} RETURNING NULL;
+        DELETE FROM instructors WHERE instructor_id = #{instructorId} RETURNING *;
     """)
     Instructor deleteById(Long instructorId);
 

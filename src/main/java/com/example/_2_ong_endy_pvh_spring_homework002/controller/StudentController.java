@@ -109,7 +109,7 @@ public class StudentController {
                     .success(true)
                     .status(HttpStatus.OK)
                     .message("Deleted successfully")
-                    .payload(student)
+                    .payload(null)
                     .timestamp(Instant.now())
                     .build();
             return new ResponseEntity<>(apiResponse, HttpStatus.OK);

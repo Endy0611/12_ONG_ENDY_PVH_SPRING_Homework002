@@ -82,7 +82,7 @@ public class CourseController {
                     .success(true)
                     .status(HttpStatus.OK)
                     .message("Course deleted successfully")
-                    .payload(courseService.deleteCourseById(courseId))
+                    .payload(null)
                     .timestamp(Instant.now())
                     .build();
             return new ResponseEntity<>(apiResponse, HttpStatus.OK);

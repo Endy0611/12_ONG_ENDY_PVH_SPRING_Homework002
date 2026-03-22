@@ -37,7 +37,7 @@ public interface CourseRepository {
 
     @ResultMap("coursesMapper")
     @Select("""
-        DELETE FROM courses WHERE course_id = #{courseId} RETURNING NULL;
+        DELETE FROM courses WHERE course_id = #{courseId} RETURNING *;
     """)
     Course deleteCourseById(Long courseId);
 

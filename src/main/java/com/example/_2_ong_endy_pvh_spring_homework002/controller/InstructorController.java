@@ -70,7 +70,7 @@ public class InstructorController {
                     .success(true)
                     .status(HttpStatus.OK)
                     .message("Instructor deleted successfully")
-                    .payload(instructor)
+                    .payload(null)
                     .timestamp(Instant.now())
                     .build();
             return new ResponseEntity<>(apiResponse, HttpStatus.OK);
