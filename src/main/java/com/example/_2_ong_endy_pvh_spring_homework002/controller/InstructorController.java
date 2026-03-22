@@ -104,7 +104,7 @@ public class InstructorController {
     public ResponseEntity<ApiResponse<Instructor>> updateInstructorById(@PathVariable("instructor_id") Long instructorId, @RequestBody InstructorRequest instructorRequest) {
         Instructor instructor = instructorService.updateInstructorById(instructorId, instructorRequest);
         if (instructor != null) {
-            ApiResponse<Instructor> apiResponse = ApiResponse.<Instructor>builder()
+               ApiResponse<Instructor> apiResponse = ApiResponse.<Instructor>builder()
                     .success(true)
                     .status(HttpStatus.OK)
                     .message("Instructor updated successfully")
