@@ -123,7 +123,5 @@ public class StudentController {
                     .build();
             return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
         }
-
-
     }
 }
