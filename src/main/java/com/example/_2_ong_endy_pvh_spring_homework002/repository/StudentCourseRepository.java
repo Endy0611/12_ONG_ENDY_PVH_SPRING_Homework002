@@ -32,5 +32,4 @@ public interface StudentCourseRepository {
 DELETE FROM student_course WHERE student_id = #{studentId};
 """)
     void deleteStudentCourseByStudentID(Long studentId);
-
 }

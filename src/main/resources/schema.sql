@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS instructors (
     instructor_name VARCHAR(40) NOT NULL,
     email VARCHAR(40) NOT NULL
     );
+
 CREATE TABLE IF NOT EXISTS students (
     student_id SERIAL PRIMARY KEY,
     student_name VARCHAR(40) NOT NULL,
