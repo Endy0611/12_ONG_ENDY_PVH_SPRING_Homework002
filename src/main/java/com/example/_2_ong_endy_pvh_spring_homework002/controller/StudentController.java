@@ -104,13 +104,26 @@ public class StudentController {
     @DeleteMapping("/{student_id}")
     public ResponseEntity<ApiResponse<Student>> deleteStudentById(@PathVariable("student_id") Long studentId) {
         Student student = studentService.deleteStudentById(studentId);
-        ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
-                .success(true)
-                .status(HttpStatus.OK)
-                .message("Deleted successfully")
-                .payload(student)
-                .timestamp(Instant.now())
-                .build();
-        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        if (student != null) {
+            ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
+                    .success(true)
+                    .status(HttpStatus.OK)
+                    .message("Deleted successfully")
+                    .payload(student)
+                    .timestamp(Instant.now())
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        } else {
+            ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
+                    .success(false)
+                    .status(HttpStatus.NOT_FOUND)
+                    .message("No students found with the given ID")
+                    .payload(null)
+                    .timestamp(Instant.now())
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
+        }
+
+
     }
 }

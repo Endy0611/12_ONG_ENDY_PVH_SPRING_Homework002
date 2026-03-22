@@ -6,6 +6,7 @@ import com.example._2_ong_endy_pvh_spring_homework002.repository.StudentCourseRe
 import com.example._2_ong_endy_pvh_spring_homework002.repository.StudentRepository;
 import com.example._2_ong_endy_pvh_spring_homework002.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,7 +41,11 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student updateStudentById(Long studentId, StudentRequest studentRequest) {
-        Student student=studentRepository.updateStudentByID(studentId,studentRequest);
+
+        if (studentRepository.getStudentById(studentId) == null) {
+            return null;
+        }
+        Student student = studentRepository.updateStudentByID(studentId,studentRequest);
         studentCourseRepository.deleteStudentCourseByStudentID(studentId);
         for (Long courseId : studentRequest.getCourseId()){
             studentCourseRepository.insertStudentCourse(student.getStudentId(),courseId);
@@ -50,9 +55,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student deleteStudentById(Long studentId) {
-        Student student = studentRepository.deleteStudentById(studentId);
         studentCourseRepository.deleteStudentCourseByStudentID(studentId);
-
         return studentRepository.deleteStudentById(studentId);
     }
 }
