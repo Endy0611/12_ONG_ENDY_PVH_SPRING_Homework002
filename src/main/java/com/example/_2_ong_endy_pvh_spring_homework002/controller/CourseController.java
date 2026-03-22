@@ -99,7 +99,7 @@ public class CourseController {
 
     }
 
-    @Operation(summary = "Update a cause by ID")
+    @Operation(summary = "Update a course by ID")
     @PutMapping("/{course_id}")
     public ResponseEntity<ApiResponse<Course>> updateCourseById(@PathVariable("course_id") Long courseId, @RequestBody CourseRequest courseRequest) {
         Course course = courseService.updateCourseById(courseId, courseRequest);

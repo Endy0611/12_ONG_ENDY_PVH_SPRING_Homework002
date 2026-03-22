@@ -84,7 +84,6 @@ public class InstructorController {
                     .build();
             return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
         }
-
     }
     @Operation(summary = "Create a new Instructor")
     @PostMapping
@@ -99,7 +98,7 @@ public class InstructorController {
         return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Update course by ID")
+    @Operation(summary = "Update instructor by ID")
     @PutMapping("/{instructor_id}")
     public ResponseEntity<ApiResponse<Instructor>> updateInstructorById(@PathVariable("instructor_id") Long instructorId, @RequestBody InstructorRequest instructorRequest) {
         Instructor instructor = instructorService.updateInstructorById(instructorId, instructorRequest);
